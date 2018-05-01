@@ -71,8 +71,8 @@ class MovieContainer extends Component {
                     <div className="col-md-12">
                         <div className="form-label-group">
                             <input value={this.state.inputValue} placeholder="Name" className="form-control" onChange={evt => this.updateInputValue(evt)} />
-                            {/* <button onClick={this.refreshData.bind(this)}>Refresh</button>
-                        <button onClick={this.getNowPlayingData.bind(this)}>Now Playing</button> */}
+                             <button onClick={this.refreshData.bind(this)}>Refresh</button>
+                        <button onClick={this.getNowPlayingData.bind(this)}>Now Playing</button> 
                         </div>
 
 
