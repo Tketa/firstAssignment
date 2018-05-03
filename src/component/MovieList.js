@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import logo from './../logo.svg';
 import Movie from './Movie';
+
+const styles=  {
+    row: {
+        marginBottom: '10px'
+    },
+    list: {
+        width: "50%",
+        marginLeft: "25%"
+    }
+}
 
 class MovieList extends Component {
     constructor(props) {
@@ -12,7 +23,7 @@ class MovieList extends Component {
             if (idx % 2 == 0) {
                 const next = this.props.movies.results[idx + 1];
                 const row = (
-                    <div key={`${item.id}${next ? next.id : ''}`} className="row" style={{ marginBottom: '10px' }}>
+                    <div key={`${item.id}${next ? next.id : ''}`} className="row" style={styles.row}>
                         <div className="col-md-6">
                             <Movie {...item} />
                         </div>
@@ -33,13 +44,19 @@ class MovieList extends Component {
                     className="App-logo"
                     alt="logo"
                     hidden={!this.props.loading} />
-                <ul style={{ width: "50%", marginLeft: "25%" }}>
-
+                <ul style={styles.list}>
                     {movies}
                 </ul>
             </div>
         );
     }
+}
+
+MovieList.propTypes = {
+    movies: PropTypes.shape({
+        results: PropTypes.array,
+    }),
+    loading: PropTypes.bool,
 }
 
 export default MovieList;

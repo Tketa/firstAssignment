@@ -9,17 +9,20 @@ class MovieContainer extends Component {
         this.state = {
             inputValue: ''
         }
+        this.loadData = this.loadData.bind(this);
+        this.refreshData = this.refreshData.bind(this);
+        this.getNowPlayingData = this.getNowPlayingData.bind(this);
     }
 
     componentWillMount() {
-        this.loadData.bind(this)();
+        this.loadData();
     }
 
     refreshData() {
         this.setState({
             movies: null
         });
-        this.loadData.bind(this)(this.state.inputValue);
+        this.loadData(this.state.inputValue);
     }
 
     getNowPlayingData() {
@@ -27,7 +30,7 @@ class MovieContainer extends Component {
             movies: null,
             inputValue: ''
         });
-        this.loadData.bind(this)();
+        this.loadData();
     }
 
     loadData(query) {
@@ -49,7 +52,7 @@ class MovieContainer extends Component {
     }
 
     updateInputValue(evt) {
-        this.loadData.bind(this)(evt.target.value);
+        this.loadData(evt.target.value);
         this.setState({
             inputValue: evt.target.value,
             movies: null
@@ -60,7 +63,7 @@ class MovieContainer extends Component {
         this.setState({
             movies: null
         });
-        this.loadData.bind(this)(this.state.inputValue);
+        this.loadData(this.state.inputValue);
     }
 
     render() {
@@ -71,11 +74,9 @@ class MovieContainer extends Component {
                     <div className="col-md-12">
                         <div className="form-label-group">
                             <input value={this.state.inputValue} placeholder="Name" className="form-control" onChange={evt => this.updateInputValue(evt)} />
-                             <button onClick={this.refreshData.bind(this)}>Refresh</button>
-                        <button onClick={this.getNowPlayingData.bind(this)}>Now Playing</button> 
+                             <button onClick={this.refreshData}>Refresh</button>
+                        <button onClick={this.getNowPlayingData}>Now Playing</button> 
                         </div>
-
-
                     </div>
                     </div>
                     <div className="row">
